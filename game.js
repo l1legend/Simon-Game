@@ -5,11 +5,13 @@ var gamePattern = [];
 var userClickedPattern = [];
 
 var started = false;
-var level = 0;
+//var level = 0;
+var level = 9999;
 
 $(document).keypress(function() {
   if (!started) {
     $("#level-title").text("Level " + level);
+
     nextSequence();
     started = true;
   }
@@ -24,6 +26,7 @@ $(".btn").click(function() {
   animatePress(userChosenColour);
 
   checkAnswer(userClickedPattern.length-1);
+
 });
 
 function checkAnswer(currentLevel) {
@@ -55,6 +58,9 @@ function nextSequence() {
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
+
+  //$("#level-answer").text(gamePattern); 
+  console.log(gamePattern);
 
   $("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
   playSound(randomChosenColour);
